@@ -4,5 +4,5 @@ from nltk.tokenize import word_tokenize
 f = open("wiki_article.txt","r")
 article = f.read()
 tokens = word_tokenize(article)
-
-print(tokens)
+lower_tokens = [t.lower() for t in tokens]
+print(lower_tokens)
