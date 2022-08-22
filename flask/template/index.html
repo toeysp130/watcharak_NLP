@@ -8,14 +8,33 @@
 </head>
 <body>
     <div style="text-align: center;">
-        <h1>step 1 : upload text File</h1>
-        <form action="/show_file" method="post" enctype="multipart/form-data">
-            <label for="file"> Upload File Text</label>
-            <input type="file" name="file[]" multiple id="">
-            <br><br>
-            <input type="submit" value="upload">
-        </form>
-        <h3>{{contents}}</h3>
-</div>
+        <div>
+            <h1>step 1 : upload text File</h1>
+            <form action="/show_file" method="post" enctype="multipart/form-data">
+                <label for="file"> upload File Text</label>
+                <input type="file" name="file[]" multiple id="">
+                <input type="submit" value="upload">
+                <br><br>
+            </form>
+            <h3>Uploaded : {{contents}}</h3><hr>
+        </div>
+        <div >
+            <h1>step 2 : search some word</h1>
+            <form action="/search_word" method="post">
+                <label for="key"> insert keyword : </label>
+                <input type="text" name="key" id="">
+                <input type="submit" value="search">
+            </form>
+            <h3>{{res}}</h3><hr>
+        </div>
+        <div >
+            <h1>step 3 : Top of 5 word</h1>
+            <form action="/top5" method="post">
+                <input type="submit" value="show">
+                <input type="text" name="top5" id="" disabled>
+            </form>
+            <h3>{{hower}}</h3><hr>
+        </div>
+    </div>
 </body>
 </html>
