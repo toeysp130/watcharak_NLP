@@ -1,4 +1,7 @@
+from cgi import print_directory
 import itertools
+from logging.config import dictConfig
+from typing import List
 import nltk 
 from gensim.models.tfidfmodel import TfidfModel
 from collections import defaultdict
@@ -8,8 +11,6 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
 articles = []
-dictionary = []
-
 def Algolitm(name,key) :
     for i in name : 
         f = open(i,"r")
@@ -21,17 +22,21 @@ def Algolitm(name,key) :
         wordnet_lemmatizer = WordNetLemmatizer()
         lemmatized = [wordnet_lemmatizer.lemmatize(t) for t in no_stop]
         articles.append(lemmatized)
-        
+    
+    global dictionary 
     dictionary = Dictionary(articles)
     computer_id = dictionary.token2id.get(key)
     # print(computer_id)
     # print(dictionary.get(computer_id))
     if(computer_id != None) :
+        print(dictionary)
+        print('%'*30)
         return "Ok! this keyword found!!"
     else :
         return "Sorry keyword not found"
 
 def BOW() :
+    print(dictionary)
     top5 = []
     corpus = [dictionary.doc2bow(a) for a in articles]
     total_word_count = defaultdict(int)
@@ -40,6 +45,6 @@ def BOW() :
     sorted_word_count = sorted(total_word_count.items(),key = lambda w : w[1], reverse=True)
 
     for word_id, word_count in sorted_word_count[:5] : 
-        top5.append(dictionary.get(word_id),word_count)
-    
+        t = dictionary.get(word_id),word_count
+        top5.append(t)
     return top5
