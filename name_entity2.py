@@ -27,6 +27,7 @@ chunked_sentences = nltk.ne_chunk_sents(pos_sentences)
 #             print(chunk)
 ner_categories = defaultdict(int) #กำหนดค่า pie chart
 
+
 for sent in chunked_sentences :
     for chunk in sent :
         if hasattr(chunk,"label") :
