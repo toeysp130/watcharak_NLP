@@ -37,5 +37,5 @@ for word_id,word_count in intertool.chain.from_iterable(corpus) :
 
 sorted_word_count = sorted(total_word_count.items(),key = lambda w : w[1], reverse=True)
 
-for word_id, word_count in sorted_word_count[]:
+for word_id, word_count in sorted_word_count:
     print(dictionary.get(word_id,word_count))

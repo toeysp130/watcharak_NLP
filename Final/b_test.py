@@ -1,4 +1,7 @@
-import nltk 
+from ast import Str
+import nltk
+import itertools
+
 from collections import defaultdict
 from gensim.corpora import Dictionary
 from nltk.tokenize import word_tokenize
@@ -9,8 +12,9 @@ from nltk.stem import WordNetLemmatizer
 # nltk.download('wordnet')
 # nltk.download('omw-1.4')
 articles = []
-for i in range(10) : 
-    f = open(f".Users\watcharak2059\Desktop\wiki\wiki_article_{i}.txt","r")
+for i in range(0,10):
+    f = open(f".\wiki\wiki_article_{i}.txt" , "r")
+    #C:\Users\watcharak2059\Desktop
     article = f.read()
     tokens = word_tokenize(article)
     lower_token = [t.lower() for t in tokens]
@@ -21,21 +25,24 @@ for i in range(10) :
     articles.append(lemmatized)
 
 dictionary = Dictionary(articles)
-computer_id = dictionary.token2id.get("computer")
+# computer_id = dictionary.token2id.get("computer")
 # print(computer_id)
 # print(dictionary.get(computer_id))
 
 corpus = [dictionary.doc2bow(a) for a in articles]
-doc = corpus[0]
-bow_doc = sorted(doc,key=lambda w : w[1], reverse=True)
-for word_id, word_count in bow_doc[:5] : 
-    print(dictionary.get(word_id),word_count)
+# doc = corpus[0]
+# bow_doc = sorted(doc, key=lambda w: w[1], reverse=True)
+# for word_id, word_count in bow_doc[:5]:
+#     print(dictionary.get(word_id), word_count)
 
-total_word_count = defaultdict(INT)
-for word_id,word_count in intertool.chain.from_iterable(corpus) : 
+total_word_count = defaultdict(int)
+for word_id, word_count in itertools.chain.from_iterable(corpus):
     total_word_count[word_id] += word_count
 
-sorted_word_count = sorted(total_word_count.items(),key = lambda w : w[1], reverse=True)
+sorted_word_count = sorted(total_word_count.items(),
+                           key=lambda w: w[1], reverse=True)
 
-for word_id, word_count in sorted_word_count[]:
-    print(dictionary.get(word_id,word_count))
+for word_id, word_count in sorted_word_count[:1]:
+    print("Hot Hit : ",dictionary.get(word_id),word_count)
+
+print("Don't dupplicate : " ,len(sorted_word_count))
