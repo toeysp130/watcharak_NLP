@@ -15,6 +15,7 @@ articles = []
 for i in range(0,10):
     f = open(f".\wiki\wiki_article_{i}.txt" , "r")
     #C:\Users\watcharak2059\Desktop
+    #อ่านไฟล์บนแม็กกับวินโดว์ใช้ใช้สแลช Path ต่างกัน
     article = f.read()
     tokens = word_tokenize(article)
     lower_token = [t.lower() for t in tokens]
