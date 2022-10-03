@@ -1,7 +1,7 @@
 from ast import Str
 import nltk
 import itertools
-
+import os
 from collections import defaultdict
 from gensim.corpora import Dictionary
 from nltk.tokenize import word_tokenize
@@ -13,8 +13,8 @@ from nltk.stem import WordNetLemmatizer
 # nltk.download('omw-1.4')
 articles = []
 for i in range(0,10):
-    f = open(f".\wiki\wiki_article_{i}.txt" , "r")
-    #C:\Users\watcharak2059\Desktop
+    f = open(f"./wiki/wiki_article_{i}.txt", "r") #ใช้ใน mac
+    #C:\Users\watcharak2059\Desktop    #ใช้กับห้อง Lab
     #อ่านไฟล์บนแม็กกับวินโดว์ใช้ใช้สแลช Path ต่างกัน
     article = f.read()
     tokens = word_tokenize(article)
